@@ -1,113 +1,52 @@
-import {Typography, Avatar, Divider, Box, Hidden,Tab, Tabs} from "@mui/material";
+import {Drawer,Fab,Box} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import {grey} from "@mui/material/colors";
-import {
-    Copyright,
-    FavoriteRounded,
-    HomeRounded,
-    FaceRounded,
-    TextSnippetRounded,
-    TerminalRounded,
-    MessageRounded,
-    ConnectWithoutContactRounded,
-    CopyrightRounded
-} from "@mui/icons-material";
+import {blueGrey, grey} from "@mui/material/colors";
+import {useState} from "react";
+import DrawerContent from "./ui/DrawerContent";
+import {MenuRounded} from "@mui/icons-material";
 
 const Sidebar = ({value,handleChange}) => {
-    const tabProps = (index) =>{
-        return{
-            id:`sidebar-tab-${index}`,
-            "aria-controls":`tabpanel-${index}`,
-
-        }
+    const[drawerOpen,setDrawerOpen] = useState(false);
+    const handleDrawerToggle = () =>{
+        setDrawerOpen(!drawerOpen);
     }
+
     return(
         <Grid xs={0} sm={0} md={3} lg={2} xl={2} sx={{backgroundColor: grey[900]}}>
-            <Box sx={{
-                justifyContent:"center",
-                textAlign:"center",
-                mt:2,
-            }}>
-                <Hidden mdDown={true}>
-                    <Avatar
-                        src={require("../assets/avatar.jpg")}
-                        variant="rounded"
-                        sx={{height:200,width:200,margin:"0 auto"}}
-                    >
-                        SG
-                    </Avatar>
-                </Hidden>
-                <Typography variant="h6" color="whitesmoke">سجاد غیاثوند</Typography>
-                <Typography variant="caption" color="whitesmoke">برنامه نویس دات نت</Typography>
-
-                <Divider variant="middle" color={grey[900]} sx={{mt:2}}/>
-
-                <Tabs
-                orientation="vertical"
-                variant="scrollable"
-                 scrollButton="auto"
-                allowScrollButtonsMobile
-                value={value}
-                onChange={handleChange}
-                >
-                    <Tab
-                        label="صفحه اصلی"
-                        icon={<HomeRounded />}
-                        iconPosition="start"
-                        {...tabProps(0)}
-                    />
-                    <Tab
-                        label="درباره من"
-                        icon={<FaceRounded />}
-                        iconPosition="start"
-                        {...tabProps(1)}
-                    />
-                    <Tab
-                        label="رزومه من"
-                        icon={<TextSnippetRounded />}
-                        iconPosition="start"
-                        {...tabProps(2)}
-                    />
-                    <Tab
-                        label="نمونه کارها"
-                        icon={<TerminalRounded />}
-                        iconPosition="start"
-                        {...tabProps(3)}
-                    />
-                    <Tab
-                        label="نظرات"
-                        icon={<MessageRounded />}
-                        iconPosition="start"
-                        {...tabProps(4)}
-                    />
-                    <Tab
-                        label="ارتباط با من"
-                        icon={<ConnectWithoutContactRounded />}
-                        iconPosition="start"
-                        {...tabProps(5)}
-                    />
-                </Tabs>
-                <Divider variant="middle" color={grey[900]} sx={{mt:2}}/>
-                <Box
-                sx={{
-                    flexGrow:1,
-                    display:"flex",
-                    flexDirection:"column",
-                    justifyContent:"end",
-                    alignItems :"center",
-                    height:100
-                }}
-                >
-                    <Typography variant="subtitle2" color="whitesmoke">
-                        <FavoriteRounded sx={{verticalAlign:"middle",color:"tomato",height:20}} />
-                        طراحی شده با {" "}
-                    </Typography>
-                    <Typography variant="caption" color="whitesmoke" sx={{mt:2}}>
-                        <CopyrightRounded sx={{verticalAlign:"middle",height:16}}  />
-                        کپی رایت 1403
-                    </Typography>
-                </Box>
+            <Box
+            sx={{display: {
+                xs:"block",
+                    sm:"block",
+                    md:"none",
+                    lg:"none",
+                    xl:"none",
+                }
+                    }}
+            >
+                <Fab aria-label="Sidebar" size="small" sx={{m:2,backgroundColor:blueGrey[500]}} onClick={handleDrawerToggle}>
+                    <MenuRounded/>
+                </Fab>
             </Box>
+            <DrawerContent value={value} handleChange={handleChange}/>
+            <Drawer
+                open={drawerOpen}
+                variant="temporary"
+                onClose={(() => setDrawerOpen(false))}
+                anchor="right"
+                sx={{
+                    "& .MuiDrawer-paper":{
+                    width:300
+                        },
+                    display:{
+                        xs:"block",
+                        sm:"block",
+                        md:"none",
+                        lg:"none",
+                    }
+            }}
+            >
+             <DrawerContent value={value} handleChange={handleChange}/>
+            </Drawer>
          </Grid>
     );
 }

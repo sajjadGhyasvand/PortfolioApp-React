@@ -37,7 +37,7 @@ function App() {
            </TabPanel>
            <TabPanel value={value} index={4}>
                <Typography variant="h5" sx={{textAlign:'center'}}>
-                   نظرات داشنجویان
+                   نظرات دانشجویان
                </Typography>
            </TabPanel>
            <TabPanel value={value} index={5}>
