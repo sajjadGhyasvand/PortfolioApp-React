@@ -2,15 +2,11 @@ import {Drawer,Fab,Box} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import {blueGrey, grey} from "@mui/material/colors";
 import {useState} from "react";
-import DrawerContent from "./ui/DrawerContent";
+import DrawerContent from "./DrawerContent";
 import {MenuRounded} from "@mui/icons-material";
 
 const Sidebar = ({value,handleChange}) => {
-    const[drawerOpen,setDrawerOpen] = useState(false);
-    const handleDrawerToggle = () =>{
-        setDrawerOpen(!drawerOpen);
-    }
-
+    const [drawerOpen, setDrawerOpen] = useState(false);
     return(
         <Grid xs={0} sm={0} md={3} lg={2} xl={2} sx={{backgroundColor: grey[900]}}>
             <Box
@@ -23,15 +19,20 @@ const Sidebar = ({value,handleChange}) => {
                 }
                     }}
             >
-                <Fab aria-label="Sidebar" size="small" sx={{m:2,backgroundColor:blueGrey[500]}} onClick={handleDrawerToggle}>
+                <Fab
+                    aria-label="Sidebar"
+                    size="small"
+                    onClick={() => setDrawerOpen(true)}
+                    sx={{ backgroundColor: grey[500], m: 2 }}
+                >
                     <MenuRounded/>
                 </Fab>
             </Box>
-            <DrawerContent value={value} handleChange={handleChange}/>
+            <DrawerContent value={value} handleChange={handleChange} />
             <Drawer
                 open={drawerOpen}
                 variant="temporary"
-                onClose={(() => setDrawerOpen(false))}
+                onClose={() => setDrawerOpen(false)}
                 anchor="right"
                 sx={{
                     "& .MuiDrawer-paper":{
@@ -45,7 +46,7 @@ const Sidebar = ({value,handleChange}) => {
                     }
             }}
             >
-             <DrawerContent value={value} handleChange={handleChange}/>
+             <DrawerContent value={value} handleChange={handleChange}  setDrawerOpen={setDrawerOpen}/>
             </Drawer>
          </Grid>
     );

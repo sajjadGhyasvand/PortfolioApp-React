@@ -1,16 +1,16 @@
 
-import './App.css';
-import MainLayout from "./Components/layouts/MainLayout";
+import {useState} from "react";
+import {Typography} from "@mui/material"
+import MainLayout from "./layouts/MainLayout";
 import Sidebar from "./Components/Sidebar";
 import ContentContainer from "./Components/ContentContainer";
-import {useState} from "react";
 import TabPanel from "./Components/tabs/TabPanel";
-import {Typography} from "@mui/material"
+import './App.css';
 function App() {
     const [value,setValue] = useState(0);
-    const handleChange = (event,newValue) => {
+    const handleChange = (event, newValue) => {
         setValue(newValue);
-    }
+    };
   return (
     <MainLayout>
        <Sidebar value={value} handleChange={handleChange} />
