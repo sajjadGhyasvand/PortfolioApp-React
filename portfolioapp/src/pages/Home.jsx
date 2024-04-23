@@ -1,12 +1,13 @@
 import bg02 from "../assets/bg02.jpeg";
 import {Box, Typography} from "@mui/material";
 import Typed from "typed.js";
-import {useCallback, useEffect, useRef} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import {loadFull} from "tsparticles";
 import Particles from "react-particles";
 import {links,firefly} from "../constants/particles";
 import TextTransition,{presets} from "react-text-transition";
 const Home = () => {
+    const [index,setIndex] = useState(0);
     const particlesInit = useCallback(async (engine) => {
         await  loadFull(engine);
     },[]);
@@ -21,12 +22,13 @@ const Home = () => {
     const infoEl = useRef(null);
     useEffect(() => {
         const typedName = new Typed(nameEl.current,{
-           strings: ["[[سجاد غیاثوند]]"] ,
-            typeSpeed: 50,
-            backSpeed: 20,
-            backDelay:10,
+           strings: ["سجاد غیاثوند"] ,
+            typeSpeed: 110,
+            backSpeed: 80,
+            backDelay:50,
             showCursor:false,
         });
+        const  stringTransition = setInterval(() => {setIndex(index => index +1)},3000);
         /*const typedInfo = new Typed(infoEl.current, {
            strings:strings,
             startDelay:1500,
@@ -39,7 +41,8 @@ const Home = () => {
 
         return () => {
             typedName.destroy();
-            typedInfo.destroy();
+            /*typedInfo.destroy();*/
+            clearInterval(stringTransition)
         }
     }, []);
 
@@ -61,10 +64,24 @@ const Home = () => {
                 loaded={particlesLoaded}
                 options={firefly}
             />*/}
-            <Typography ref={nameEl} variant="h3" color='tomato'></Typography>
-            <Typography ref={infoEl} variant="h4" color='whitesmoke' sx={{textDecoration:"underline",textDecorationColor:"#"}}>
-                من برنامه نویس هستم
+            <Box component="div" sx={{display:"flex"}}>
+            <Typography variant="h3" color='#F93c92'>
+                {"  </"}
             </Typography>
+            <Typography ref={nameEl} variant="h3" color='tomato'></Typography>
+                <Typography variant="h3" color='#F93c92'>
+                    {"  >"}
+                </Typography>
+            </Box>
+            <Box component="div" sx={{display:"flex"}}>
+                <TextTransition springConfig={presets.wobbly }>
+                    <Typography ref={infoEl} variant="h4" color='whitesmoke' sx={{mt:4,textDecoration:"underline",textDecorationColor:"#F93c92"}}>
+                        {strings[index % strings.length ]}
+                    </Typography>
+                </TextTransition>
+                <Typography variant="h4" color="whitesmoke" sx={{mt:4, mr:1}}>من یک</Typography>
+            </Box>
+
         </Box>
     )
 }
