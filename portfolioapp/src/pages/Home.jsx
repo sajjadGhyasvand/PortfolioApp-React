@@ -4,8 +4,8 @@ import Typed from "typed.js";
 import {useCallback, useEffect, useRef} from "react";
 import {loadFull} from "tsparticles";
 import Particles from "react-particles";
-import {links} from "../constants/particles";
-
+import {links,firefly} from "../constants/particles";
+import TextTransition,{presets} from "react-text-transition";
 const Home = () => {
     const particlesInit = useCallback(async (engine) => {
         await  loadFull(engine);
@@ -27,7 +27,7 @@ const Home = () => {
             backDelay:10,
             showCursor:false,
         });
-        const typedInfo = new Typed(infoEl.current, {
+        /*const typedInfo = new Typed(infoEl.current, {
            strings:strings,
             startDelay:1500,
             typeSpeed:80,
@@ -35,7 +35,7 @@ const Home = () => {
             backDelay:50,
             loop:true,
             showCursor:false,
-        });
+        });*/
 
         return () => {
             typedName.destroy();
@@ -55,8 +55,12 @@ const Home = () => {
             justifyContent: "center",
             alignItems:"center",
         }}>
-            {/*error happend */}
-           {/* <Particles id="tspaticles" init={particlesInit} loaded={particlesLoaded} options={links} />*/}
+           {/* <Particles
+                id="tsparticles"
+                init={particlesInit}
+                loaded={particlesLoaded}
+                options={firefly}
+            />*/}
             <Typography ref={nameEl} variant="h3" color='tomato'></Typography>
             <Typography ref={infoEl} variant="h4" color='whitesmoke' sx={{textDecoration:"underline",textDecorationColor:"#"}}>
                 من برنامه نویس هستم

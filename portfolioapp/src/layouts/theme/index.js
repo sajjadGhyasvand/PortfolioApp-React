@@ -12,7 +12,7 @@ export const index = createTheme({
         },
     },
     typography:{
-        fontFamily : "Vazir , roboto",
+        fontFamily : "tanha ,Vazir , roboto",
     },
     components:{
         MuiButtonBase:{
