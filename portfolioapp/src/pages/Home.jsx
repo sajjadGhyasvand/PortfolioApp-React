@@ -6,6 +6,8 @@ import {loadFull} from "tsparticles";
 import Particles from "react-particles";
 import {links,firefly} from "../constants/particles";
 import TextTransition,{presets} from "react-text-transition";
+import {Helmet} from "react-helmet-async";
+
 const Home = () => {
     const [index,setIndex] = useState(0);
     const particlesInit = useCallback(async (engine) => {
@@ -58,6 +60,9 @@ const Home = () => {
             justifyContent: "center",
             alignItems:"center",
         }}>
+            <Helmet>
+                <title>سجاد غیاثوند | صفحه اصلی</title>
+            </Helmet>
            {/* <Particles
                 id="tsparticles"
                 init={particlesInit}

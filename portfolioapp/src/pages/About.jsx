@@ -1,4 +1,4 @@
-import {Box,Typography,Card,CardContent, Divider, Chip, Avatar} from "@mui/material";
+import {Box,Typography,Card,CardContent, Divider, Chip, Avatar,Tooltip} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Devinfo from "./components/Devinfo";
 import avatar from "../assets/avatar.jpg";
@@ -6,6 +6,9 @@ import {CodeRounded, KeyboardArrowLeftRounded, SelfImprovementRounded} from "@mu
 import Skill from "./components/Skill";
 import {devSkills} from "../constants/skills";
 import {useEffect, useState} from "react";
+import {Helmet} from "react-helmet-async";
+import {devWorkInfo} from "../constants/details";
+import CountUp from  "react-countup"
 const  About = () => {
     const [javascript,setJavascript] = useState(0);
     const [html,setHtml] = useState(0);
@@ -47,6 +50,9 @@ const  About = () => {
     const  {htmlSkill,cssSkill,gitSkill,nodeSkill,reactSkill,jsSkill} = devSkills;
     return(
         <Card sx={{height:"100vh",backgroundColor:"whitesmoke",overflowY:"scroll"}}>
+            <Helmet>
+                <title>سجاد غیاثوند | درباره من</title>
+            </Helmet>
             <CardContent>
                 <Grid container sx={{mx:3}}>
                     <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
@@ -61,10 +67,64 @@ const  About = () => {
                                 </Typography>
                             } sx={{p:3}} />
                         </Divider>
-                        <Devinfo>نام و نام خانوادگی : سجاد غیاثوند</Devinfo>
-                        <Devinfo>سن :29</Devinfo>
-                        <Devinfo>شهر :قزوین</Devinfo>
-                        <Devinfo>sajgh1995@hotmail.com:آدرس ایمیل</Devinfo>
+                        <Grid container>
+                            <Grid
+                                xs={4}
+                                sm={4}
+                                md={3}
+                                lg={3}
+                                sx={{
+                                    mt: 3,
+                                    display: {
+                                        xs: "none",
+                                        sm: "block",
+                                        md: "block",
+                                    },
+                                }}
+                            >
+                                {devWorkInfo.map((item, index) => (
+                                    <Box
+                                        key={index}
+                                        component="div"
+                                        sx={{ width: 1, mb: 1 }}
+                                    >
+                                        <Tooltip
+                                            title={item.tooltipTitle}
+                                            placement="right"
+                                            arrow
+                                        >
+                                            <Chip
+                                                icon={item.icon}
+                                                label={
+                                                    <Typography
+                                                        variant="body1"
+                                                        color="whitesmoke"
+                                                    >
+                                                        <CountUp
+                                                            start={0}
+                                                            end={item.total}
+                                                            duration={2}
+                                                        />
+                                                    </Typography>
+                                                }
+                                                sx={{
+                                                    p: 2,
+                                                    backgroundColor: item.color,
+                                                    width: 1,
+                                                }}
+                                            />
+                                        </Tooltip>
+                                    </Box>
+                                ))}
+                            </Grid>
+                            <Grid xs={12} sm={8} md={9} lg={9}>
+                                <Devinfo>نام و نام خانوادگی : سجاد غیاثوند</Devinfo>
+                                <Devinfo>سن :29</Devinfo>
+                                <Devinfo>شهر :قزوین</Devinfo>
+                                <Devinfo>sajgh1995@hotmail.com:آدرس ایمیل</Devinfo>
+                            </Grid>
+                        </Grid>
+
                     </Grid>
                     <Grid xs={0} sm={0} md={4} lg={4} xl={4}>
                         <Avatar src={avatar} variant="rounded" sx={{height:250,margin:"0 auto", width:250,display: {
