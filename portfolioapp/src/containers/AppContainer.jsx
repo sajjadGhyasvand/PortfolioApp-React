@@ -1,6 +1,7 @@
 
-import {useState} from "react";
-import {Typography,Box} from "@mui/material"
+import {useEffect, useState} from "react";
+import {Typography,useMediaQuery} from "@mui/material";
+import  {useTheme} from "@mui/material/styles";
 import MainLayout from "../layouts/MainLayout";
 import Sidebar from "../Components/sidebar/Sidebar";
 import PagesContainer from "./PagesContainer";
@@ -8,10 +9,17 @@ import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context"
 import DrawerActionButton from "../Components/drawer/DrawerActionButton";
-import {Home,About} from "../pages";
+import {Home,About,Resume} from "../pages";
 function AppContainer() {
     const [pageNumber,setPageNumber] = useState(0);
     const [drawerOpen,setDrawerOpen] = useState(false);
+    const  theme = useTheme();
+    const  isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+    useEffect(() => {
+        if (isMdUp){
+            setDrawerOpen(false);
+        }
+    }, [isMdUp]);
     const handlePageNumber = (event, newValue) => {
         setPageNumber(newValue);
     };
@@ -25,17 +33,15 @@ function AppContainer() {
               <PagesContainer>
 
                       <Page pageNumber={pageNumber} index={0}>
-                         <Home/>
+                         <Home helmetTitle={"وب سایت شخصی سجاد غیاثوند "}/>
                       </Page>
                       <Page pageNumber={pageNumber} index={1}>
                           <Typography variant="h5" sx={{textAlign:'center'}}>
-                              <About/>
+                              <About helmetTitle={"وب سایت شخصی | درباره من "}/>
                           </Typography>
                       </Page>
                       <Page pageNumber={pageNumber} index={2}>
-                          <Typography variant="h5" sx={{textAlign:'center'}}>
-                              رزومه من
-                          </Typography>
+                         <Resume helmetTitle={"وب سایت شخصی | روزومه من "}/>
                       </Page>
                       <Page pageNumber={pageNumber} index={3}>
                           <Typography variant="h5" sx={{textAlign:'center'}}>

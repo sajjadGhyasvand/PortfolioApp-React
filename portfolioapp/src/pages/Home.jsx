@@ -8,7 +8,7 @@ import {links,firefly} from "../constants/particles";
 import TextTransition,{presets} from "react-text-transition";
 import {Helmet} from "react-helmet-async";
 
-const Home = () => {
+const Home = ({helmetTitle}) => {
     const [index,setIndex] = useState(0);
     const particlesInit = useCallback(async (engine) => {
         await  loadFull(engine);
@@ -61,7 +61,7 @@ const Home = () => {
             alignItems:"center",
         }}>
             <Helmet>
-                <title>سجاد غیاثوند | صفحه اصلی</title>
+                <title>{helmetTitle}</title>
             </Helmet>
            {/* <Particles
                 id="tsparticles"

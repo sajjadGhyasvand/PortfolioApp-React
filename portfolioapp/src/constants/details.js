@@ -36,6 +36,12 @@ export const devWorkInfo = [
 
 export const devEdu = [
     {
+        year: "1391-1392",
+        cert: "دیپلم",
+        major: "تجربی",
+        place: "باریک بین",
+    },
+    {
         year: "1393 - 1398",
         cert: "کارشناسی",
         major: "رشته کامپیوتر گرایش نرم افزار",

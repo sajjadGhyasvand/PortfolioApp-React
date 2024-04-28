@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import {Helmet} from "react-helmet-async";
 import {devWorkInfo} from "../constants/details";
 import CountUp from  "react-countup"
-const  About = () => {
+const  About = ({helmetTitle}) => {
     const [javascript,setJavascript] = useState(0);
     const [html,setHtml] = useState(0);
     const [css,setCss] = useState(0);
@@ -51,7 +51,7 @@ const  About = () => {
     return(
         <Card sx={{height:"100vh",backgroundColor:"whitesmoke",overflowY:"scroll"}}>
             <Helmet>
-                <title>سجاد غیاثوند | درباره من</title>
+                <title>{helmetTitle}</title>
             </Helmet>
             <CardContent>
                 <Grid container sx={{mx:3}}>
