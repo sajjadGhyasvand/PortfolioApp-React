@@ -9,7 +9,7 @@ import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context"
 import DrawerActionButton from "../Components/drawer/DrawerActionButton";
-import {Home,About,Resume} from "../pages";
+import {Home, About, Resume, Course,Comment} from "../pages";
 function AppContainer() {
     const [pageNumber,setPageNumber] = useState(0);
     const [drawerOpen,setDrawerOpen] = useState(false);
@@ -45,12 +45,12 @@ function AppContainer() {
                       </Page>
                       <Page pageNumber={pageNumber} index={3}>
                           <Typography variant="h5" sx={{textAlign:'center'}}>
-                              نمونه کارها
+                              <Course helmetTitle={"وب سایت شخصی | نمونه کار من "}/>
                           </Typography>
                       </Page>
                       <Page pageNumber={pageNumber} index={4}>
                           <Typography variant="h5" sx={{textAlign:'center'}}>
-                              نظرات دانشجویان
+                              <Comment helmetTitle={"وب سایت شخصی | نظرات   "}/>
                           </Typography>
                       </Page>
                       <Page pageNumber={pageNumber} index={5}>
