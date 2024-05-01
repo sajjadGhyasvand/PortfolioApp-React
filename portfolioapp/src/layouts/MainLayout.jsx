@@ -6,15 +6,16 @@ import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 
 import Grid from "@mui/material/Unstable_Grid2";
-import {index} from "./theme";
+import {lightTheme,darkTheme} from "./theme";
 const cacheRTL = createCache({
     key: "muirtl",
     stylisPlugins: [prefixer, rtlPlugin],
 });
-const MainLayout = ({children}) => {
+const MainLayout = ({children,mode}) => {
+    const theme = mode === "dark" ? darkTheme : lightTheme;
     return(
         <CacheProvider value={cacheRTL}>
-            <ThemeProvider theme={index}>
+            <ThemeProvider theme={theme}>
                 <HelmetProvider>
                     {/*Grid System*/}
                     <Grid container sx={{height:"100vh"}}>
