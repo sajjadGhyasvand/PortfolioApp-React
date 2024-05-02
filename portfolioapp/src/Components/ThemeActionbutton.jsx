@@ -1,39 +1,42 @@
-import {Box, Fab} from "@mui/material";
-import {grey} from "@mui/material/colors";
-import {MenuRounded} from "@mui/icons-material";
-import {useContext} from "react";
-import MainContext from "../context";
-import {useTheme} from "@mui/material/styles";
-import {WbSunnyOutlined,NightlightOutlined} from "@mui/icons-material";
+import { useContext } from "react";
 
-const ThemeActionbutton = ({}) => {
+import { useTheme } from "@mui/material/styles";
+import { Box, Fab } from "@mui/material";
+import { WbSunnyOutlined, NightlightOutlined } from "@mui/icons-material";
+
+import mainContext from "../context";
+
+const ThemeActionButton = () => {
     const theme = useTheme();
-    const {handleThemeChange} = useContext(MainContext);
-    return(
+    const { handleThemeChange } = useContext(mainContext);
+
+    return (
         <Box
             sx={{
-                position:"absolute",
+                position: "absolute",
                 display: {
-                    xs:"block",
-                    sm:"block",
-                    md:"none",
-                    lg:"none",
-                    xl:"none",
-                }
+                    xs: "none",
+                    md: "block",
+                },
             }}
         >
             <Fab
-                aria-label="Sidebar"
-                size="small"
+                aria-label="ThemeChanger"
                 variant="extended"
+                size="small"
                 color="secondary"
                 onClick={handleThemeChange}
-                sx={{ color:"whitesmoke", m: 2 }}
+                sx={{ ml: 2, color: "whitesmoke" }}
             >
-                {theme.palette.mode === "dark" ? <WbSunnyOutlined sx={{mr:1}} /> : <NightlightOutlined sx={{mr:1}} />}
+                {theme.palette.mode === "dark" ? (
+                    <WbSunnyOutlined sx={{ mr: 1 }} />
+                ) : (
+                    <NightlightOutlined sx={{ mr: 1 }} />
+                )}
                 {theme.palette.mode === "dark" ? "تم روز" : "تم شب"}
             </Fab>
         </Box>
-    )
-}
-export default ThemeActionbutton;
+    );
+};
+
+export default ThemeActionButton;
