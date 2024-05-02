@@ -32,7 +32,7 @@ function AppContainer() {
     }
   return (
       <MainContext.Provider value={{ pageNumber, handlePageNumber,handleThemeChange ,drawerOpen, setDrawerOpen }}>
-          <MainLayout>
+          <MainLayout mode={mode}>
               <SidebarContainer>
                   <Sidebar />
               </SidebarContainer>
