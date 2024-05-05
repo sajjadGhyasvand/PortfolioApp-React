@@ -9,7 +9,7 @@ import Page from "../pages/components/Page";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context"
 import DrawerActionButton from "../Components/drawer/DrawerActionButton";
-import {Home, About, Resume, Course,Comment} from "../pages";
+import {Home, About, Resume, Course,Comment,Contact} from "../pages";
 function AppContainer() {
     const [pageNumber,setPageNumber] = useState(0);
     const [drawerOpen,setDrawerOpen] = useState(false);
@@ -62,7 +62,7 @@ function AppContainer() {
                       </Page>
                       <Page pageNumber={pageNumber} index={5}>
                           <Typography variant="h5" sx={{textAlign:'center'}}>
-                              ارتباط با من
+                              <Contact helmetTitle={"وب سایت شخصی | ارتباط با ما   "}/>
                           </Typography>
                       </Page>
 

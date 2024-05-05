@@ -3,3 +3,4 @@ export {default as About} from "./About.jsx";
 export {default as Resume} from "./Resume.jsx";
 export {default as Course} from "./Course.jsx";
 export {default as Comment} from "./Comments.jsx";
+export {default as Contact} from "./Contact.jsx";
