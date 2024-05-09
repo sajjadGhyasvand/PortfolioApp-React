@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import {useFormik} from "formik";
 import { useTheme } from "@mui/material/styles";
 import {
     Divider,
@@ -23,10 +23,23 @@ import {
 import { Helmet } from "react-helmet-async";
 
 import worldMap from "../assets/map.svg";
+import {contactValidationSchema} from "./Validations/contactValidation";
 
 const Contact = ({ helmetTitle }) => {
     const [loading, setLoading] = useState(false);
-
+const contactInputName = {
+    fullName : "",
+    email : "",
+    subject : "",
+    message : "",
+}
+const formik = useFormik({
+    initialValues : contactInputName,
+    onSubmit: (values) => {
+        console.log("Form Values : " , values);
+    },
+    validationSchema: contactValidationSchema,
+});
     const theme = useTheme();
 
     useEffect(() => {
@@ -91,7 +104,7 @@ const Contact = ({ helmetTitle }) => {
                                     alignItems: "center",
                                 }}
                             >
-                                <form autoComplete="off">
+                                <form autoComplete="off" onSubmit={formik.handleSubmit}>
                                     <CardContent>
                                         <Grid container>
                                             <Grid
@@ -107,6 +120,14 @@ const Contact = ({ helmetTitle }) => {
                                                             label="نام و نام خانوادگی"
                                                             name="fullname"
                                                             variant="outlined"
+                                                            helperText={
+                                                            formik.touched.fullName ?
+                                                                formik.errors.fullName
+                                                                : null
+                                                            }
+                                                            value={formik.values?.fullName}
+                                                            onChange={formik.handleChange}
+                                                            error={Boolean(formik.touched.fullName && formik.errors.fullName)}
                                                             InputProps={{
                                                                 startAdornment: (
                                                                     <InputAdornment postion="end">
@@ -124,6 +145,14 @@ const Contact = ({ helmetTitle }) => {
                                                             label="آدرس ایمیل"
                                                             name="email"
                                                             variant="outlined"
+                                                            helperText={
+                                                                formik.touched.email ?
+                                                                    formik.errors.email
+                                                                    : null
+                                                            }
+                                                            value={formik.values?.email}
+                                                            onChange={formik.handleChange}
+                                                            error={Boolean(formik.touched.email && formik.errors.email)}
                                                             InputProps={{
                                                                 startAdornment: (
                                                                     <InputAdornment postion="end">
@@ -141,6 +170,15 @@ const Contact = ({ helmetTitle }) => {
                                                             label="عنوان"
                                                             name="subject"
                                                             variant="outlined"
+                                                            helperText={
+                                                                formik.touched.subject ?
+                                                                    formik.errors.subject
+                                                                    : null
+                                                            }
+                                                            value={formik.values?.subject}
+                                                            onChange={formik.handleChange}
+                                                            error={Boolean(formik.touched.subject && formik.errors.subject)}
+
                                                             InputProps={{
                                                                 startAdornment: (
                                                                     <InputAdornment postion="end">
@@ -160,6 +198,15 @@ const Contact = ({ helmetTitle }) => {
                                                             label="متن پیام"
                                                             name="message"
                                                             variant="outlined"
+                                                            helperText={
+                                                                formik.touched.message ?
+                                                                    formik.errors.message
+                                                                    : null
+                                                            }
+                                                            value={formik.values?.message}
+                                                            onChange={formik.handleChange}
+                                                            error={Boolean(formik.touched.message && formik.errors.message)}
+
                                                         />
                                                     </Grid>
                                                 </Grid>
