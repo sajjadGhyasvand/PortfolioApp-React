@@ -13,6 +13,7 @@ import {
     CardActions,
     Button,
 } from "@mui/material";
+import ReCAPTCHA from "react-google-recaptcha";
 import Grid from "@mui/material/Unstable_Grid2";
 import {
     AccountCircle,
@@ -23,8 +24,8 @@ import {
 import { Helmet } from "react-helmet-async";
 
 import worldMap from "../assets/map.svg";
-import {contactValidationSchema} from "./Validations/contactValidation";
-
+import {contactValidationSchema} from "../validations/contactValidation";
+import React from "react";
 const Contact = ({ helmetTitle }) => {
     const [loading, setLoading] = useState(false);
 const contactInputName = {
@@ -32,7 +33,9 @@ const contactInputName = {
     email : "",
     subject : "",
     message : "",
+    recaptcha : "",
 }
+const recaptchaRef = React.createRef();
 const formik = useFormik({
     initialValues : contactInputName,
     onSubmit: (values) => {
@@ -219,6 +222,17 @@ const formik = useFormik({
                                             flexDirection: "column",
                                         }}
                                     >
+                                        <ReCAPTCHA ref={recaptchaRef} sitekey="6LebvtcpAAAAAGqGu3N2rNdnSSYLc1gg4J2GaMZW" theme={theme.palette.mode} hl="fa"
+                                                   onChange={value => (
+                                                        formik.setFieldValue("recaptcha",value)
+                                                    )} />
+                                        {
+                                            formik.errors.recaptcha && formik.touched.recaptcha && (
+                                                <Typography variant="caption" color="error" >
+                                                    {formik.errors.recaptcha}
+                                                </Typography>
+                                            )
+                                        }
                                         <Button
                                             type="submit"
                                             color="success"

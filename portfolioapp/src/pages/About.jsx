@@ -1,14 +1,15 @@
 import {Box,Typography,Card,CardContent, Divider, Chip, Avatar,Tooltip} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import Devinfo from "./components/Devinfo";
+import {Skill} from "../Components/pages";
 import avatar from "../assets/avatar.jpg";
-import {CodeRounded, KeyboardArrowLeftRounded, SelfImprovementRounded} from "@mui/icons-material";
-import Skill from "./components/Skill";
+import {CodeRounded, SelfImprovementRounded} from "@mui/icons-material";
 import {devSkills} from "../constants/skills";
 import {useEffect, useState} from "react";
 import {Helmet} from "react-helmet-async";
 import {devWorkInfo} from "../constants/details";
 import CountUp from  "react-countup"
+import {CustomAvatar} from "../Components/common";
+import Devinfo from "../Components/pages/Devinfo";
 const  About = ({helmetTitle}) => {
     const [javascript,setJavascript] = useState(0);
     const [html,setHtml] = useState(0);
@@ -127,14 +128,7 @@ const  About = ({helmetTitle}) => {
 
                     </Grid>
                     <Grid xs={0} sm={0} md={4} lg={4} xl={4}>
-                        <Avatar src={avatar} variant="rounded" sx={{height:250,margin:"0 auto", width:250,display: {
-                                xl: "block",
-                                lg: "block",
-                                md: "block",
-                                sm: "none",
-                                xs: "none",
-                            }
-                            }}>SG</Avatar>
+                        <CustomAvatar avatar={avatar} size={250} fallback="SG"/>
                     </Grid>
                     <Grid sx={{width:1,mt:1}}>
                         <Divider textAlign="center" sx={{

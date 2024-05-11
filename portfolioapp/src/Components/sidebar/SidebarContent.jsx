@@ -13,9 +13,9 @@ const SidebarContent = () => {
                 mt:2,
             }}>
             <SidebarHeader/>
-            <Divider variant="middle" color={grey[900]} sx={{mt:1}}/>
+            <Divider variant="middle" sx={{mt:1}}/>
             <SidebarTabs/>
-            <Divider variant="middle" color={grey[900]} sx={{mt:1}}/>
+            <Divider variant="middle"  sx={{mt:1}}/>
             <SidebarFooter/>
         </Box>
     )

@@ -5,7 +5,7 @@ import  {useTheme} from "@mui/material/styles";
 import MainLayout from "../layouts/MainLayout";
 import Sidebar from "../Components/sidebar/Sidebar";
 import PagesContainer from "./PagesContainer";
-import Page from "../pages/components/Page";
+import {Page} from "../Components/pages";
 import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context"
 import DrawerActionButton from "../Components/drawer/DrawerActionButton";
@@ -65,8 +65,6 @@ function AppContainer() {
                               <Contact helmetTitle={"وب سایت شخصی | ارتباط با ما   "}/>
                           </Typography>
                       </Page>
-
-
               </PagesContainer>
           </MainLayout>
       </MainContext.Provider>
